@@ -2,7 +2,7 @@
 node_modules/
 db/
 uploads/
-.connection.php
+/connection.php
 # تجاهل ملفات البيئة
 .env
 
