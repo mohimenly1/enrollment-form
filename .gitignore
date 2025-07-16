@@ -1,0 +1,15 @@
+# تجاهل مجلد node_modules (لمشاريع Node.js أو Vue)
+node_modules/
+db/
+uploads/
+connections.php
+# تجاهل ملفات البيئة
+.env
+
+# تجاهل ملفات النظام
+.DS_Store
+Thumbs.db
+
+# تجاهل ملفات IDE
+.idea/
+*.log

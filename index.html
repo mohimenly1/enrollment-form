@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Enrollment Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&display=swap');
+
+.font-tajawal {
+    font-family: 'Tajawal', sans-serif;
+}
+
+.thank-you {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 3rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Start hidden, will be shown by JS */
+  /* display: none; -> This is already handled by the 'hidden' class */
+  animation: slideUpFadeIn 0.6s ease-out forwards;
+}
+
+/* The checkmark icon */
+.thank-you .fa-check-circle {
+  font-size: 5rem;
+  color: var(--success); /* #4cc9f0 */
+  margin-bottom: 1.5rem;
+  animation: popIn 0.5s 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  transform: scale(0);
+}
+
+/* The main "Thank You" title */
+.thank-you h2 {
+  font-size: 2.25rem;
+  color: var(--primary-dark); /* #3a0ca3 */
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* The descriptive paragraphs */
+.thank-you p {
+  font-size: 1.1rem;
+  color: #495057;
+  max-width: 600px;
+  line-height: 1.7;
+  margin: 0 auto 2rem;
+}
+
+/* The "Return to Homepage" button */
+.thank-you .btn-home {
+  background: var(--primary); /* #4361ee */
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.thank-you .btn-home:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Animation Keyframes */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  to {
+    transform: scale(1);
+  }
+}
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="./logo-school-one.png" alt="School Logo">
+      <h1 class="header-title">Student Enrollment Form - نموذج تسجيل الطلاب</h1>
+    </div>
+    <div class="language-selector">
+      <button class="language-btn">English / العربية</button>
+    </div>
+  </header>
+
+ 
+
+  <div class="container">
+
+    <div id="welcomeScreen" class="welcome-container">
+        <h2 class="welcome-title ">هل الطالب مسجل حالياً في مدرسة كاليدونيان الدولية؟</h2>
+        <p class="welcome-subtitle">Is the student currently enrolled at Caledonian International School?</p>
+        <div class="choice-buttons">
+            <button id="returningStudentBtn" class="choice-btn">
+                <i class="fas fa-user-check "></i>
+                <p class="font-tajawal">نعـم ضمن أسرة كاليدونيان</p>
+                
+                <span>👪 Already part of the Caledonian family</span>
+            </button>
+            <button id="newStudentBtn" class="choice-btn">
+                <i class="fas fa-user-plus"></i>
+                <p class="font-tajawal">لا، طالب جديد في المدرسة</p>
+                <span>🦸 Welcome our new hero stars</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="returningStudentFormContainer" class="hidden">
+      <div class="form-card">
+        <div class="form-header">
+          <h2><i class="fas fa-user-check"></i> تسجيل طالب عائد للعام الدراسي 2025-2026</h2>
+        </div>
+        <div class="form-body">
+          <form id="returningStudentForm" method="post">
+            <input type="hidden" name="enrollment_type" value="returning">
+
+            <div class="form-grid">
+              <div class="form-group input-icon">
+                <label>اسم الطالب الكامل *</label>
+                <i class="fas fa-user"></i>
+                <input type="text" name="student_name" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label>فصله السابق في العام 2024-2025 *</label>
+                <select name="previous_grade" class="form-control" required>
+                    <option value="">اختر الصف السابق</option>
+                    <option value="pre-kg">Pre-Kg</option>
+                    <option value="kg1">KG1</option>
+                    <option value="kg2">KG2</option>
+                    <option value="grade1">Grade 1</option>
+                    <option value="grade2">Grade 2</option>
+                    <option value="grade3">Grade 3</option>
+                    <option value="grade4">Grade 4</option>
+                    <option value="grade5">Grade 5</option>
+                    <option value="grade6">Grade 6</option>
+                    <option value="grade7">Grade 7</option>
+                    <option value="grade8">Grade 8</option>
+                    <option value="grade9">Grade 9</option>
+                    <option value="grade10">Grade 10</option>
+                    <option value="grade11">Grade 11</option>
+                    <option value="grade12">Grade 12</option>
+                </select>
+              </div>
+              <div class="form-group input-icon">
+                <label>اسم ولي الأمر *</label>
+                <i class="fas fa-user-shield"></i>
+                <input type="text" name="parent_name" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label>صلة القرابة *</label>
+                <select name="parent_relationship" class="form-control" required>
+                  <option value="">اختر صلة القرابة</option>
+                  <option value="father">الأب</option>
+                  <option value="mother">الأم</option>
+                  <option value="guardian">الوصي</option>
+                </select>
+              </div>
+              <div class="form-group input-icon">
+                <label>رقم هاتف ولي الأمر للتواصل *</label>
+                <i class="fas fa-phone"></i>
+                <input type="tel" name="parent_phone" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-actions" style="justify-content: center;">
+                 <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> تأكيد التسجيل</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="newStudentFormContainer" class="hidden">
+      <div class="form-card">
+        <div class="form-header">
+          <h2><i class="fas fa-user-graduate"></i> New Student Enrollment</h2>
+        </div>
+        
+        <div class="form-body">
+          <form id="enrollmentForm" method="post" action="./process.php" enctype="multipart/form-data" novalidate>
+            <input type="hidden" name="enrollment_type" value="new">
+
+            <div class="step-indicator">
+              <div class="step active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-label">Student Info</div>
+              </div>
+              <div class="step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-label">Academic Info</div>
+              </div>
+              <div class="step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-label">Parent Info</div>
+              </div>
+              <div class="step" data-step="4">
+                <div class="step-number">4</div>
+                <div class="step-label">Documents</div>
+              </div>
+              <div class="step" data-step="5">
+                <div class="step-number">5</div>
+                <div class="step-label">Review</div>
+              </div>
+            </div>
+            
+            <div id="studentsList"></div>
+        
+            <div class="step-content active" data-step="1">
+              <h3 class="section-title"><i class="fas fa-user"></i> Student Information - معلومات الطالب</h3>
+              
+              <div class="form-grid">
+                <div class="form-group input-icon">
+                  <label>Full Name - الاسم الكامل *</label>
+                  <i class="fas fa-user"></i>
+                  <input type="text" class="form-control" id="fullName" name="fullName[]" required>
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Date of Birth - تاريخ الميلاد *</label>
+                  <i class="fas fa-calendar-alt"></i>
+                  <input type="date" class="form-control" id="birthDate" name="birthDate[]" required>
+                </div>
+                
+                <div class="form-group">
+                  <label>Gender - الجنس *</label>
+                  <select class="form-control" id="gender" name="gender[]" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male - ذكر</option>
+                    <option value="female">Female - أنثى</option>
+                  </select>
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Nationality - الجنسية *</label>
+                  <i class="fas fa-globe"></i>
+                  <input type="text" class="form-control" id="nationality" name="nationality[]" required>
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Passport Number - رقم الجواز *</label>
+                  <i class="fas fa-passport"></i>
+                  <input type="text" class="form-control" id="passportNumber" name="passportNumber[]" required>
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Place of Birth - مكان الولادة</label>
+                  <i class="fas fa-map-marker-alt"></i>
+                  <input type="text" class="form-control" name="birthPlace[]" id="birthPlace">
+                </div>
+              </div>
+              
+              <h4 class="section-title"><i class="fas fa-heartbeat"></i> Medical Information - المعلومات الطبية</h4>
+              
+              <div class="form-grid">
+                <div class="form-group input-icon">
+                  <label>Blood Type - فصيلة الدم</label>
+                  <i class="fas fa-tint"></i>
+                  <select class="form-control" name="bloodType[]" id="bloodType">
+                    <option value="">Select - اختر</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Allergies - الحساسية</label>
+                  <i class="fas fa-allergies"></i>
+                  <input type="text" class="form-control" name="allergies[]" id="allergies" placeholder="List any allergies - اذكر أي حساسية">
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Medical Conditions - حالات طبية</label>
+                  <i class="fas fa-notes-medical"></i>
+                  <input type="text" class="form-control" name="medicalConditions[]" id="medicalConditions" placeholder="Any chronic conditions - أي أمراض مزمنة">
+                </div>
+              </div>
+            </div>
+            
+            <div class="step-content" data-step="2">
+              <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Academic Information - المعلومات الأكاديمية</h3>
+              
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Grade Level - الصف الدراسي *</label>
+                  <select class="form-control" id="gradeLevel" name="gradeLevel[]" required>
+                    <option value="">Select Grade - اختر الصف</option>
+                    <option value="pre-kg">Pre-Kg</option>
+                    <option value="kg1">KG1</option>
+                    <option value="kg2">KG2</option>
+                    <option value="grade1">Grade 1 - الصف الأول</option>
+                    <option value="grade2">Grade 2 - الصف الثاني</option>
+                    <option value="grade3">Grade 3 - الصف الثالث</option>
+                    <option value="grade4">Grade 4 - الصف الرابع</option>
+                    <option value="grade5">Grade 5 - الصف الخامس</option>
+                    <option value="grade6">Grade 6 - الصف السادس</option>
+                    <option value="grade7">Grade 7 - الصف السابع</option>
+                    <option value="grade8">Grade 8 - الصف الثامن</option>
+                    <option value="grade9">Grade 9 - الصف التاسع</option>
+                    <option value="grade10">Grade 10 - الصف العاشر</option>
+                    <option value="grade11">Grade 11 - الصف الحادي عشر</option>
+                    <option value="grade12">Grade 12 - الصف الثاني عشر</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label>Academic Year - السنة الدراسية *</label>
+                  <select class="form-control" name="academicYear[]" id="academicYear" required>
+                    <option value="">Select Year - اختر السنة</option>
+                    <option value="2025-2026">2025-2026</option>
+                  </select>
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Previous School - المدرسة السابقة</label>
+                  <i class="fas fa-school"></i>
+                  <input type="text" class="form-control" name="previousSchool[]" id="previousSchool">
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Subjects of Interest - المواد المفضلة</label>
+                  <i class="fas fa-book-open"></i>
+                  <input type="text" class="form-control" name="subjectsInterest[]" id="subjectsInterest" placeholder="Math, Science, Arts... - رياضيات، علوم، فنون...">
+                </div>
+                
+                <div class="form-group">
+                  <label>Special Education Needs - احتياجات تعليمية خاصة</label>
+                  <select class="form-control" id="specialNeeds" name="specialNeeds[]">
+                    <option value="none">None - لا يوجد</option>
+                    <option value="learning">Learning Support - دعم تعليمي</option>
+                    <option value="physical">Physical Disability - إعاقة جسدية</option>
+                    <option value="gifted">Gifted Program - برنامج الموهوبين</option>
+                    <option value="other">Other - آخر</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label>Additional Academic Notes - ملاحظات أكاديمية إضافية</label>
+                <textarea class="form-control" id="academicNotes" name="academicNotes[]" rows="3"></textarea>
+              </div>
+            </div>
+            
+            <div class="step-content" data-step="3">
+              <h3 class="section-title"><i class="fas fa-user-friends"></i> Parent/Guardian Information - معلومات ولي الأمر</h3>
+              
+              <div class="form-group">
+                <label>Relationship to Student - صلة القرابة *</label>
+                <select class="form-control" id="relationship" name="relationship[]" required>
+                  <option value="">Select Relationship - اختر صلة القرابة</option>
+                  <option value="father">Father - الأب</option>
+                  <option value="mother">Mother - الأم</option>
+                  <option value="guardian">Guardian - الوصي</option>
+                  <option value="other">Other Relative - قريب آخر</option>
+                </select>
+              </div>
+              
+              <div class="form-grid">
+                <div class="form-group input-icon">
+                  <label>Full Name - الاسم الكامل *</label>
+                  <i class="fas fa-user"></i>
+                  <input name="parentName[]" type="text" class="form-control" id="parentName" required>
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Email - البريد الإلكتروني </label>
+                  <i class="fas fa-envelope"></i>
+                  <input type="email" class="form-control" name="parentEmail[]" id="parentEmail">
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Phone - رقم الهاتف *</label>
+                  <i class="fas fa-phone"></i>
+                  <input type="tel" class="form-control" name="parentPhone[]" id="parentPhone" required>
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Alternate Phone - رقم هاتف بديل</label>
+                  <i class="fas fa-phone-alt"></i>
+                  <input type="tel" name="parentPhoneAlt[]" class="form-control" id="parentPhoneAlt">
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Occupation - المهنة</label>
+                  <i class="fas fa-briefcase"></i>
+                  <input type="text" class="form-control" name="parentOccupation[]" id="parentOccupation">
+                </div>
+                
+                <div class="form-group input-icon">
+                  <label>Company - الشركة</label>
+                  <i class="fas fa-building"></i>
+                  <input type="text" class="form-control" id="parentCompany" name="parentCompany[]">
+                </div>
+              </div>
+              
+              <h4 class="section-title"><i class="fas fa-home"></i> Address Information - معلومات العنوان</h4>
+              
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Country - الدولة *</label>
+                  <input type="text" class="form-control" id="country" name="country[]" required>
+                </div>
+                
+                <div class="form-group">
+                  <label>City - المدينة *</label>
+                  <input type="text" class="form-control" id="city" name="city[]" required>
+                </div>
+                
+                <div class="form-group">
+                  <label>Street - الشارع</label>
+                  <input type="text" class="form-control" id="street" name="street[]">
+                </div>
+                
+              </div>
+              
+              <div class="form-group">
+                <span class="text-muted" style="font-size: 0.9rem;">This field is optional - هذا الحقل اختياري</span>
+                <label>Full Address - العنوان الكامل</label>
+                <textarea class="form-control" id="fullAddress" name="fullAddress[]" rows="2"></textarea>
+              </div>
+            </div>
+            
+            <div class="step-content" data-step="4">
+              <h3 class="section-title"><i class="fas fa-file-upload"></i> Required Documents - المستندات المطلوبة</h3>
+              <p style="margin-bottom: 1.5rem; color: #6c757d;">Please upload clear scans of the following documents. يرجى تحميل نسخ واضحة من المستندات التالية</p>
+              
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Birth Certificate - شهادة الميلاد </label>
+                  <input type="file" class="form-control" id="birthCertificate" name="birthCertificate[]" accept=".pdf,.jpg,.jpeg,.png" >
+                  <small class="text-muted">PDF, JPG, or PNG (Max 5MB)</small>
+                </div>
+                
+                <div class="form-group">
+                  <label>Passport Copy - نسخة الجواز *</label>
+                  <input type="file" class="form-control" name="passportCopy[]" id="passportCopy" accept=".pdf,.jpg,.jpeg,.png" >
+                  <small class="text-muted">PDF, JPG, or PNG (Max 5MB)</small>
+                </div>
+                
+                <div class="form-group">
+                  <label>Vaccination Record - سجل التطعيمات </label>
+                  <input type="file" class="form-control" name="vaccinationRecord[]" id="vaccinationRecord" accept=".pdf,.jpg,.jpeg,.png" >
+                  <small class="text-muted">PDF, JPG, or PNG (Max 5MB)</small>
+                </div>
+                
+                <div class="form-group">
+                  <label>Previous School Report - تقرير المدرسة السابقة</label>
+                  <input type="file" class="form-control" id="schoolReport" name="schoolReport[]" accept=".pdf,.jpg,.jpeg,.png">
+                  <small class="text-muted">PDF, JPG, or PNG (Max 5MB)</small>
+                </div>
+                
+                <div class="form-group">
+                  <label>Parent ID Copy - نسخة هوية ولي الأمر </label>
+                  <input type="file" class="form-control" id="parentId" name="parentId[]" accept=".pdf,.jpg,.jpeg,.png" >
+                  <small class="text-muted">PDF, JPG, or PNG (Max 5MB)</small>
+                </div>
+                
+                <div class="form-group">
+                  <label>Passport-Size Photo - صورة شخصية</label>
+                  <input type="file" class="form-control" id="studentPhoto" name="studentPhoto[]" accept=".jpg,.jpeg,.png">
+                  <small class="text-muted">JPG or PNG (Max 2MB)</small>
+                </div>
+              </div>
+            </div>
+            
+            <div class="step-content" data-step="5">
+              <h3 class="section-title"><i class="fas fa-check-circle"></i> Review and Submit - المراجعة والإرسال</h3>
+              <p style="margin-bottom: 2rem;">Please review all information before submitting. سيتم إرسال نموذج التسجيل بعد التأكيد</p>
+              
+              <div id="reviewData"></div>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline" id="prevBtn">
+                <i class="fas fa-arrow-left"></i> Previous - السابق
+              </button>
+              <button type="button" class="btn btn-primary" id="nextBtn">
+                Next - التالي <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="addSiblingScreen" class="hidden welcome-container">
+      <div class="thank-you" style="display: block; padding: 0;">
+          <i class="fas fa-user-plus" style="color: var(--primary);"></i>
+          <h2>تم تسجيل الطالب <strong id="addedStudentName" style="color: var(--primary-dark);"></strong> بنجاح!</h2>
+          <p style="font-size: 1.2rem; margin-top: 1rem;">هل ترغب في تسجيل أخ آخر لنفس العائلة؟</p>
+      </div>
+      <div class="choice-buttons" style="margin-top: 2rem;">
+          <button id="addAnotherSiblingBtn" class="choice-btn">
+              <i class="fas fa-plus-circle"></i>
+              نعم، إضافة أخ
+              <span>Add Sibling</span>
+          </button>
+          <button id="finishRegistrationBtn" class="choice-btn" style="background-color: var(--success);">
+              <i class="fas fa-check-double"></i>
+              لا، إنهاء التسجيل
+              <span>Finish Registration</span>
+          </button>
+      </div>
+  </div>
+    
+    <div class="thank-you hidden" id="thankYou">
+      <i class="fas fa-check-circle"></i>
+      <h2>Thank You for Your Enrollment! - شكراً لتسجيلكم!</h2>
+      <p>Your submission has been received. Our admissions team will contact you shortly.</p>
+      <p>تم استلام طلبكم. سيتواصل معكم فريق القبول قريباً.</p>
+      <a href="" class="btn-home" id="homeBtn">
+        <i class="fas fa-home"></i> Return to Homepage - العودة للصفحة الرئيسية
+      </a>
+    </div>
+  </div>
+
+<script src="./assets/script.js"></script>
+
+    <footer class="footer">
+        <p>© 2025 Caledonian International School. All Rights Reserved.</p>
+        <p class="copyright">© ٢٠٢٥ مدرسة كاليدونيان الدولية. جميع الحقوق محفوظة.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,730 @@
+:root {
+    --primary: #4361ee;
+    --primary-dark: #3a0ca3;
+    --secondary: #3f37c9;
+    --accent: #4895ef;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --success: #4cc9f0;
+    --warning: #f8961e;
+    --danger: #f72585;
+    --border-radius: 12px;
+    --box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+
+
+  /* ============================================= */
+/* ==   Thank You / Success Message Styles    == */
+/* ============================================= */
+
+.thank-you {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 3rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Start hidden, will be shown by JS */
+  /* display: none; -> This is already handled by the 'hidden' class */
+  animation: slideUpFadeIn 0.6s ease-out forwards;
+}
+
+/* The checkmark icon */
+.thank-you .fa-check-circle {
+  font-size: 5rem;
+  color: var(--success); /* #4cc9f0 */
+  margin-bottom: 1.5rem;
+  animation: popIn 0.5s 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  transform: scale(0);
+}
+
+/* The main "Thank You" title */
+.thank-you h2 {
+  font-size: 2.25rem;
+  color: var(--primary-dark); /* #3a0ca3 */
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* The descriptive paragraphs */
+.thank-you p {
+  font-size: 1.1rem;
+  color: #495057;
+  max-width: 600px;
+  line-height: 1.7;
+  margin: 0 auto 2rem;
+}
+
+/* The "Return to Homepage" button */
+.thank-you .btn-home {
+  background: var(--primary); /* #4361ee */
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.thank-you .btn-home:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Animation Keyframes */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  to {
+    transform: scale(1);
+  }
+}
+
+
+    /* Styles for the main welcome container box */
+.welcome-container {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: var(--border-radius); /* 12px */
+  box-shadow: var(--box-shadow); /* 0 8px 30px rgba(0,0,0,0.12) */
+  margin-top: 1rem;
+}
+
+/* Styles for the main question (h2) */
+.welcome-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-dark); /* #3a0ca3 */
+  margin-bottom: 0.5rem;
+}
+
+/* Styles for the English subtitle (p) */
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-bottom: 2.5rem;
+}
+
+/* This is the container that holds the two buttons */
+.choice-buttons {
+  display: flex; /* Puts buttons side-by-side */
+  justify-content: center; /* Centers them horizontally */
+  gap: 2rem; /* Adds space between buttons */
+  flex-wrap: wrap; /* Allows buttons to stack on smaller screens */
+}
+
+/* This is the main style for the two large, modern buttons */
+.choice-btn {
+  background-color: var(--primary); /* #4361ee */
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 1.5rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: var(--border-radius); /* 12px */
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column; /* Stacks icon, title, and subtitle vertically */
+  align-items: center; /* Centers content inside the button */
+  gap: 0.5rem;
+  min-width: 280px;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+}
+
+/* The hover effect for the buttons */
+.choice-btn:hover {
+  background-color: var(--primary-dark); /* #3a0ca3 */
+  transform: translateY(-5px); /* Lifts the button slightly */
+  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+}
+
+/* Styles for the icon inside the button */
+.choice-btn i {
+  font-size: 2.5rem; /* Large icon */
+  margin-bottom: 0.5rem;
+}
+
+/* Styles for the smaller English text inside the button */
+.choice-btn span {
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+  * { 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Tajawal', 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4f0fd 100%);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 2rem;
+  }
+
+  /* ============================================= */
+/* ==   New Styles for Welcome/Choice Screen  == */
+/* ============================================= */
+
+/* A simple utility class to hide elements */
+.hidden {
+  display: none !important;
+}
+
+/* Styles for the main welcome container */
+.welcome-container {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-top: 1rem;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-bottom: 2.5rem;
+}
+
+.choice-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* This is the main style for the two large, modern buttons */
+.choice-btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 1.5rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column; /* To stack icon, title, and subtitle */
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 280px;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+}
+
+.choice-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+}
+
+.choice-btn i {
+  font-size: 2.5rem; /* Large icon */
+  margin-bottom: 0.5rem;
+}
+
+.choice-btn span {
+  font-size: 1rem; /* Smaller subtitle in the button */
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Specific style for the description in the returning student form */
+#returningStudentFormContainer .form-description {
+    margin-bottom: 1.5rem;
+    color: #6c757d;
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+}
+  
+  header {
+    background: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  header img {
+    height: 50px;
+    width: auto;
+  }
+  
+  .header-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .form-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  
+  .form-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    position: relative;
+  }
+  
+  .form-header h2 {
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .form-header i {
+    font-size: 1.5rem;
+  }
+  
+  .form-body {
+    padding: 2rem;
+  }
+  
+  .step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  
+  .step-indicator::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #e9ecef;
+    z-index: 1;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+  }
+  
+  .step.active .step-number {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .step.completed .step-number {
+    background: var(--success);
+    color: white;
+  }
+  
+  .step-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  .step.active .step-label {
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  .step-content {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .step-content.active {
+    display: block;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .section-title {
+    font-size: 1.25rem;
+    color: var(--primary-dark);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .section-title i {
+    color: var(--accent);
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #495057;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: #f8f9fa;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+    background-color: white;
+  }
+  
+  .input-icon {
+    position: relative;
+  }
+  
+  .input-icon i {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: #adb5bd;
+  }
+  
+  .input-icon input, .input-icon select {
+    padding-right: 40px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+  
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+  }
+  
+  .btn-outline:hover {
+    background: rgba(67, 97, 238, 0.1);
+  }
+  
+  .btn-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .thank-you {
+    text-align: center;
+    padding: 3rem 2rem;
+    display: none;
+  }
+  
+  .thank-you i {
+    font-size: 4rem;
+    color: var(--success);
+    margin-bottom: 1.5rem;
+  }
+  
+  .thank-you h2 {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+  }
+  
+  .thank-you p {
+    font-size: 1.1rem;
+    color: #495057;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  
+  .btn-home {
+    background: var(--primary);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
+  }
+  
+  .btn-home:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+  
+  .student-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    transition: var(--transition);
+  }
+  
+  .student-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+  }
+  
+  .student-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .student-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 0;
+  }
+  
+  .remove-student {
+    background: var(--danger);
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .remove-student:hover {
+    transform: scale(1.1);
+  }
+  
+  .student-card-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .student-info {
+    font-size: 0.9rem;
+  }
+  
+  .student-info strong {
+    color: #495057;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  
+  .student-info span {
+    color: #6c757d;
+  }
+  
+  .add-student-btn {
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .add-student-btn:hover {
+    background: #3aa8d8;
+    transform: translateY(-2px);
+  }
+  
+  .language-selector {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+  
+  .language-btn {
+    background: rgba(255,255,255,0.9);
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .language-btn:hover {
+    background: white;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-body {
+      padding: 1.5rem;
+    }
+    
+    header {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    
+    .logo-container {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .header-title {
+      font-size: 1.2rem;
+    }
+    
+    .step-indicator {
+      margin-bottom: 1.5rem;
+    }
+    
+    .step-label {
+      font-size: 0.75rem;
+    }
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+    border-top: 1px solid #e9ecef;
+  }
+  
+  .school-motto {
+    font-style: italic;
+    color: var(--primary);
+    margin: 1rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .copyright {
+    margin-top: 1rem;
+    font-weight: 500;
+  }
